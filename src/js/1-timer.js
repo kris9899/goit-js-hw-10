@@ -4,7 +4,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
+import errorSvg from '../img/symbol-defs.svg';
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -20,7 +20,13 @@ flatpickr('#datetime-picker', options);
 
 const datetimePicker = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('button[type="button"]');
-const timer = document.querySelector('.timer');
+
+const timerValues = {
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+};
 
 let userSelectedDate = null;
 let countdownInterval = null;
@@ -32,8 +38,21 @@ function selectedDate() {
   if (userSelectedDate <= now) {
     iziToast.error({
       title: 'Error',
-      message: 'Please choose a date in the future',
+      titleColor: '#fff',
+      titleSize: '16px',
+      titleLineHeight: 1.5,
       position: 'topRight',
+      message: 'Please choose a date in the future',
+      messageSize: '16px',
+      messageLineHeight: 1.5,
+      messageColor: '#fff',
+      backgroundColor: '#ef4040',
+
+      closeOnEscape: true,
+      icon: 'error',
+      iconUrl: errorSvg,
+      timeout: 3000,
+      theme: 'dark',
     });
     startButton.disabled = true;
   } else {
@@ -46,7 +65,7 @@ function handleClick() {
   startButton.disabled = true;
   datetimePicker.disabled = true;
 
-  if (countdownInterval) clearInterval(countdownInterval);
+  if (countdownInterval) return;
 
   countdownInterval = setInterval(() => {
     const now = new Date();
@@ -55,7 +74,7 @@ function handleClick() {
     if (timeRemaining <= 0) {
       clearInterval(countdownInterval);
       datetimePicker.disabled = false;
-      timer.textContent = '00:00:00:00';
+      resetTimer();
       startButton.disabled = false;
     } else {
       const time = convertMs(timeRemaining);
@@ -65,27 +84,31 @@ function handleClick() {
 }
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = Math.floor(ms / day);
-  // Remaining hours
   const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
 }
 function updatedTimer({ days, hours, minutes, seconds }) {
-  timer.textContent = `${addLeadingZero(days)}:${addLeadingZero(
-    hours
-  )}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
+  timerValues.days.textContent = addLeadingZero(days);
+  timerValues.hours.textContent = addLeadingZero(hours);
+  timerValues.minutes.textContent = addLeadingZero(minutes);
+  timerValues.seconds.textContent = addLeadingZero(seconds);
+}
+function resetTimer() {
+  updatedTimer({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 }
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
