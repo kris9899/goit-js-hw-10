@@ -143,17 +143,18 @@ button:hover {
   letter-spacing: 0.04em;
   color: #2e2f42;
 }
-input[type='number'] {
+input[name='delay'] {
+  width: 360px;
   box-sizing: border-box;
   padding-left: 16px;
   border: 1px solid #808080;
   border-radius: 4px;
   height: 40px;
 }
-input[type='number']:hover {
+input[name='delay']:hover {
   border: 1px solid #000;
 }
-input[type='number']:active {
+input[name='delay']:active {
   border: 1px solid #4e75ff;
 }
 .legend {
