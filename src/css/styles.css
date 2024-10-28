@@ -124,52 +124,95 @@ button:hover {
 .flatpickr-day:hover {
   background-color: #c1c1c1 !important;
 }
-/* .iziToast-wrapper.iziToast-wrapper-topRight {
-  top: 10px !important;
-  right: 10px !important;
-  position: fixed !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-}
-.iziToast.custom-styles {
-  border-bottom: 2px solid #ffbebe !important;
-  border-radius: 4px !important;
-  padding: 16px 20px !important;
-  width: 302px !important;
-  height: 64px !important;
-  background: #ef4040 !important;
+
+.form {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
 }
-.iziToast-icon {
-  font-size: 24px !important;
-  color: #fff !important;
+.delay {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
-.iziToast-title {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  font-size: 16px !important;
-  line-height: 150% !important ;
-  letter-spacing: 0.03em !important;
-  color: #fff !important;
-  margin: 0 !important;
+input[type='number'] {
+  box-sizing: border-box;
+  padding-left: 16px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 360px;
+  height: 40px;
 }
-.iziToast-message {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  line-height: 150% !important;
-  letter-spacing: 0.03em !important;
-  color: #fff !important;
-  margin-left: 0 8px !important;
+input[type='number']:hover {
+  border: 1px solid #000;
 }
-.iziToast-close {
-  font-size: 16px !important;
-  color: #fff !important;
-  cursor: pointer !important;
-  margin-left: auto !important;
-  opacity: 0.8 !important;
-  transition: opacity 0.2s !important;
-} */
+input[type='number']:active {
+  border: 1px solid #4e75ff;
+}
+.legend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 4px;
+  stroke-width: 1px;
+  stroke: #808080;
+  width: 360px;
+  height: 78px;
+  gap: 48px;
+}
+fieldset:hover {
+  border-radius: 4px;
+  stroke-width: 1px;
+  stroke: #000;
+}
+label.snackbar {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #2e2f42;
+}
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #757575;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-right: 14px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+button[type='submit'] {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 360px;
+  height: 40px;
+  background: #4e75ff;
+  margin-top: 24px;
+}
+button[type='submit']:hover {
+  background: #6c8cff;
+}
